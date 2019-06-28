@@ -1,0 +1,26 @@
+<div id="container">
+	<div class="left">
+		<form [formGroup]="cricketForm" (ngSubmit)="onSubmit()">
+			<div formArrayName="questionArray" *ngFor="let item of cricketForm.get('questionArray').controls; let i = index;">
+				<div [formGroupName]="i">
+					<div>{{questions[i].question}}</div>
+					<mat-radio-group formControlName="options" aria-label="Select an option">
+						<div *ngFor="let option of questions[i].options; let j =index">
+							<mat-radio-button [value]="option">
+								{{option}}
+							</mat-radio-button>
+						</div>
+					</mat-radio-group>
+				</div>
+			</div>
+			<hr>
+			<h3 [ngClass]="cricketForm.valid ? 'green' : 'red'">Is form valid : {{ cricketForm.valid | json }}</h3>
+			<hr>
+			<button type="submit" mat-stroked-button color="primary" [disabled]="!cricketForm.valid">Submit</button>
+		</form>
+	</div>
+	<div class="right">
+		<h2>Form Value:</h2>
+		{{cricketForm.value | json}}
+	</div>
+</div>
