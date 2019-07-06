@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'dynamic-form-array';
 
+  buttonText : string = "My custom text for button!";
+
   userJson: any = [{
     "question": "Who Was The First Indian To Hit A Test Century?",
     "options": ["Lala Amarnath", "Kapil Dev", "Sunil Gavaskar"], "ans": "Lala Amarnath"

@@ -8,5 +8,5 @@
 </div>
 
 <div *ngIf="userJson">
-  <dynamic-form-array (onSubmit)="onFormSubmit($event)" [questions]="userJson"></dynamic-form-array>
+  <dynamic-form-array (onSubmit)="onFormSubmit($event)" [buttonText]="buttonText" [questions]="userJson"></dynamic-form-array>
 </div>

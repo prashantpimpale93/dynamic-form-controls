@@ -12,15 +12,22 @@ export class DynamicFormArrayComponent implements OnInit {
   questionArray: FormArray;
 
   @Input() questions: any[] = [];
+  @Input() buttonText: string = "Submit";
   @Output() onSubmit: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.cricketForm = this.fb.group({
-      questionArray: this.fb.array([])
-    });
-    this.addControlsInFormArray();
+    if (this.questions && this.questions.length) {
+      this.cricketForm = this.fb.group({
+        questionArray: this.fb.array([])
+      });
+      this.addControlsInFormArray();
+    }
+    else {
+      console.error('Unable to initialize form array! Please check you have passed questions array as an Input value for component')
+    }
+
   }
 
   submit() {
