@@ -1,33 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from '@angular/forms'
 
 @Component({
-  selector: 'app-dynamic-form-array',
+  selector: 'dynamic-form-array',
   templateUrl: './dynamic-form-array.component.html',
   styleUrls: ['./dynamic-form-array.component.css']
 })
 export class DynamicFormArrayComponent implements OnInit {
 
+  cricketForm: FormGroup;
+  questionArray: FormArray;
+
+  @Input() questions: any[] = [];
+  @Output() onSubmit: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private fb: FormBuilder) { }
+
   ngOnInit() {
-    console.log(this.questions);
     this.cricketForm = this.fb.group({
       questionArray: this.fb.array([])
     });
     this.addControlsInFormArray();
   }
 
-  cricketForm: FormGroup;
-  questionArray: FormArray;
-
-  @Input() questions: any[]= []; 
-
-
-  constructor(private fb: FormBuilder) {
-    
-  }
-
-  onSubmit() {
-    console.log(this.cricketForm.value);
+  submit() {
+    this.onSubmit.emit(this.cricketForm.value)
   }
 
   addControlsInFormArray() {
@@ -41,7 +38,7 @@ export class DynamicFormArrayComponent implements OnInit {
   createQuestion(obj): FormGroup {
     return this.fb.group({
       question: new FormControl(obj.question),
-      options: new FormControl("", [Validators.required])
+      selectedOption: new FormControl("", [Validators.required])
     });
   }
 }

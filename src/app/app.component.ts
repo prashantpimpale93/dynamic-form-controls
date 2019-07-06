@@ -23,4 +23,11 @@ export class AppComponent {
     "question": " When And Where Was The First Ranji Trophy Match Played?",
     "options": ["kolkata", "Mumbai", "Chennai", "Satara"], "ans": "Chennai"
   }];
+
+
+  onFormSubmit(data){
+    console.log(data);
+  }
 }
+
+

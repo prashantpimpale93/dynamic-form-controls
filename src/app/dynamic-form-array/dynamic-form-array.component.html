@@ -1,10 +1,10 @@
 <div id="container">
 	<div class="left">
-		<form [formGroup]="cricketForm" (ngSubmit)="onSubmit()">
+		<form [formGroup]="cricketForm" (ngSubmit)="submit()">
 			<div formArrayName="questionArray" *ngFor="let item of cricketForm.get('questionArray').controls; let i = index;">
 				<div [formGroupName]="i">
 					<div>{{questions[i].question}}</div>
-					<mat-radio-group formControlName="options" aria-label="Select an option">
+					<mat-radio-group formControlName="selectedOption" aria-label="Select an option">
 						<div *ngFor="let option of questions[i].options; let j =index">
 							<mat-radio-button [value]="option">
 								{{option}}
